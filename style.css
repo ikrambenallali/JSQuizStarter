@@ -1,0 +1,39 @@
+body {
+    background-color: blueviolet;
+}
+.container {
+    max-width: 100vh;
+    /* height: 50vh; */
+    margin: 30vh auto ;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    /* opacity: 0.5; */
+    border-color: black;
+    /* border-width: 10dvb; */
+    
+}
+.start-quiz-button{
+    padding: 1vh;
+    margin-top: 10vh;
+    border-radius: 8px;
+    background-color: rgb(165, 141, 186);
+    border-color: black;
+  
+}
+.QuestionContainer{
+    background-color: white;
+     max-width: 100vh;
+    /* height: 50vh; */
+    margin: 30vh auto ;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    /* opacity: 0.5; */
+    border-color: black;
+    /* border-width: 10dvb; */
+    
+}
