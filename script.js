@@ -70,3 +70,50 @@ const Questions =[
         correctAnswer: 'number',
     },
 ]
+
+let Repences=[];
+let QuestionActuelIndex=1;
+let score=0;
+let QuestionIncorrect=0;
+let QuestionCorrect=0;
+const QuestionContainer=document.getElementById('QuestionContainer')
+
+
+
+function afficherQuestions(index){
+QuestionContainer.innerHTML=`
+<div>
+<div class="QuestionEtTime">
+<h2 class="titleQuestionTotal">Qestion <span>${index}</span></h2>
+<div class="time" id"time" >20</div>
+</div>
+<p class="questionX">${Questions[index].question}</p>
+
+
+<input type="radio" class="repence">${Questions[index].answers[0]}</input   >
+<input type="radio" class="repence">${Questions[index].answers[1]}</input   >
+<input type="radio" class="repence">${Questions[index].answers[2]}</input   >
+<input type="radio" class="repence">${Questions[index].answers[3]}</input   >
+<div class="NextButtonEtnbrQustion">
+<h2>Question ${index} of ${Questions.length}</h2>
+<button id="NextButton" class="NextButton">Next</button>
+</div>
+</div>
+
+`
+
+const NextButton = document.getElementById('NextButton');
+
+NextButton.addEventListener('click', () => {
+    QuestionActuelIndex++;
+    console.log('hi');
+    if (QuestionActuelIndex < Questions.length) {
+        
+        afficherQuestions(QuestionActuelIndex);
+    } else {
+console.log("Quiz terminé");
+
+}
+});
+}
+afficherQuestions(QuestionActuelIndex);
