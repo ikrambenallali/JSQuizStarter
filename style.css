@@ -1,5 +1,6 @@
 body {
     background-color: rgb(210, 189, 228);
+    overflow: hidden;
 }
 .container {
     max-width: 100vh;
@@ -13,6 +14,7 @@ body {
     /* opacity: 0.5; */
     border-color: black;
     /* border-width: 10dvb; */
+    /* background-color: red; */
     
 }
 .start-quiz-button{
@@ -76,4 +78,42 @@ body {
     align-items: center;
     font-weight: bold;
     font-size: x-large;
+}
+.answers label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+  padding: 10px 15px;
+  border: 2px solid #C447AF;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  background-color: #FBF4FA;
+}
+
+.answers label:hover {
+  background-color: #E192D4;
+  color: white;
+}
+
+/* cacher la checkbox par défaut */
+.answers input[type="checkbox"] {
+  display: none;
+}
+
+/* style quand elle est cochée */
+.answers input[type="checkbox"]:checked + span {
+  background-color: #C447AF;
+  color: white;
+  border-color: #C447AF;
+  box-shadow: 0px 4px 8px rgba(196, 71, 175, 0.4);
+}
+
+/* styliser le texte comme bouton */
+.answers label span {
+  flex: 1;
+  padding: 6px 0;
+  transition: 0.3s;
 }

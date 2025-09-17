@@ -1,119 +1,153 @@
-const Questions =[
-  // question 1
+const Questions = [
     {
         id: 1,
         question: 'What is the data type returned by typeof null?',
         answers: ['null', 'object', 'undefined', 'boolean'],
-        correctAnswer: 'object',
+        correctAnswers: ['object'],
     },
-    // question 2
     {
         id: 2,
-        question: 'What is the correct way to declare a variable that cannot be changed?',
+        question: 'Which declarations create a variable that cannot be changed?',
         answers: ['var x = 5;', 'let x = 5;', 'const x = 5;', 'static x = 5;'],
-        correctAnswer: 'const x = 5;',
+        correctAnswers: ['const x = 5;'],
     },
-    // question 3
     {
         id: 3,
-        question: 'What is the result of: console.log(2 + "2");',
-        answers: ['4', '"22"', 'NaN', 'Error'],
-        correctAnswer: '"22"',
+        question: 'Which of these will output "22"?',
+        answers: [
+            'console.log(2 + "2")',
+            'console.log("2" + 2)',
+            'console.log(2 + 2)',
+            'console.log("2" + "2")'
+        ],
+        correctAnswers: [
+            'console.log(2 + "2")',
+            'console.log("2" + 2)',
+            'console.log("2" + "2")'
+        ],
     },
-    // question 4
     {
         id: 4,
-        question: 'Which method converts the string "123" into a number?',
-        answers: ['parseInt("123")', 'string("123")', 'NumberToInt("123")', 'toInt("123")'],
-        correctAnswer: 'parseInt("123")',
+        question: 'Which methods can convert the string "123" into a number?',
+        answers: ['parseInt("123")', 'Number("123")', 'string("123")', 'toInt("123")'],
+        correctAnswers: ['parseInt("123")', 'Number("123")'],
     },
-    // question 5
     {
         id: 5,
         question: 'What is the value of Boolean(0)?',
         answers: ['true', 'false', '"0"', 'null'],
-        correctAnswer: 'false',
+        correctAnswers: ['false'],
     },
-    // question 6
     {
         id: 6,
-        question: 'Which method adds an element to the end of an array?',
+        question: 'Which methods can add elements to an array?',
         answers: ['push()', 'pop()', 'shift()', 'unshift()'],
-        correctAnswer: 'push()',
+        correctAnswers: ['push()', 'unshift()'],
     },
-    // question 7
     {
         id: 7,
         question: 'What is the scope of a variable declared with let?',
         answers: ['Global', 'Function', 'Block', 'File'],
-        correctAnswer: 'Block',
+        correctAnswers: ['Block'],
     },
-    // question 8
     {
         id: 8,
         question: 'What is the result of: console.log([1, 2, 3].length);',
         answers: ['2', '3', 'undefined', 'Error'],
-        correctAnswer: '3',
+        correctAnswers: ['3'],
     },
-    // question 9
     {
         id: 9,
-        question: 'Which function executes an action after a delay?',
+        question: 'Which functions execute code repeatedly or after a delay?',
         answers: ['setInterval()', 'setTimeout()', 'delay()', 'sleep()'],
-        correctAnswer: 'setTimeout()',
+        correctAnswers: ['setInterval()', 'setTimeout()'],
     },
-    // question 10
     {
         id: 10,
         question: 'What does this expression return? console.log(typeof NaN);',
         answers: ['NaN', 'undefined', 'number', 'object'],
-        correctAnswer: 'number',
+        correctAnswers: ['number'],
     },
-]
+];
 
-let Repences=[];
-let QuestionActuelIndex=1;
-let score=0;
-let QuestionIncorrect=0;
-let QuestionCorrect=0;
-const QuestionContainer=document.getElementById('QuestionContainer')
+let QuestionActuelIndex = 0;
+let score = 0;
 
+const QuestionContainer = document.getElementById('QuestionContainer');
 
+function afficherQuestions(index) {
+    const q = Questions[index];
 
-function afficherQuestions(index){
-QuestionContainer.innerHTML=`
-<div>
-<div class="QuestionEtTime">
-<h2 class="titleQuestionTotal">Qestion <span>${index}</span></h2>
-<div class="time" id"time" >20</div>
-</div>
-<p class="questionX">${Questions[index].question}</p>
+    QuestionContainer.innerHTML = `
+    <div>
+      <div class="QuestionEtTime">
+        <h2 class="titleQuestionTotal">Question <span>${index + 1}</span></h2>
+        <div class="time" id="time">20</div>
+      </div>
+      <p class="questionX">${q.question}</p>
+      
+      <div class="answers">
+        ${q.answers
+            .map(
+                (answer, i) =>
+                    `<label>
+       <input type="checkbox" name="repence" class="repanceCocher" id="repanceCocher" value="${answer}">
+       <span>${answer}</span>
+     </label>`
+            )
 
+            .join('')}
+      </div>
 
-<input type="radio" class="repence">${Questions[index].answers[0]}</input   >
-<input type="radio" class="repence">${Questions[index].answers[1]}</input   >
-<input type="radio" class="repence">${Questions[index].answers[2]}</input   >
-<input type="radio" class="repence">${Questions[index].answers[3]}</input   >
-<div class="NextButtonEtnbrQustion">
-<h2>Question ${index} of ${Questions.length}</h2>
-<button id="NextButton" class="NextButton">Next</button>
-</div>
-</div>
+      <div class="NextButtonEtnbrQustion">
+        <h2>Question ${index + 1} of ${Questions.length}</h2>
+        <button id="NextButton" class="NextButton">Next</button>
+      </div>
+    </div>
+  `;
 
-`
+    const NextButton = document.getElementById('NextButton');
 
-const NextButton = document.getElementById('NextButton');
+    const repanceCocher = document.getElementById('repanceCocher');
+    NextButton.addEventListener('click', () => {
+        // atharzzar min cochir 
+        const checkboxes = document.querySelectorAll('input[name="repence"]:checked');
+        const userAnswers = Array.from(checkboxes).map(cb => cb.value);
+        console.log(userAnswers);
 
-NextButton.addEventListener('click', () => {
-    QuestionActuelIndex++;
-    console.log('hi');
-    if (QuestionActuelIndex < Questions.length) {
-        
-        afficherQuestions(QuestionActuelIndex);
-    } else {
-console.log("Quiz terminé");
+        // anarza ini nichan ini la 
+        if (compareAnswers(userAnswers, q.correctAnswers)) {
+            console.log(checkboxes);
 
-}
+checkboxes.forEach(cb => {
+    cb.nextElementSibling.style.backgroundColor = 'green';
 });
+
+            score++;
+
+        } else {
+            // alert("❌ Mauvaise réponse !");
+            checkboxes.forEach(cb => cb.style.backgroundColor = 'red'); // désélectionner les cases cochées
+
+        }
+
+        // Passer à la prochaine question
+       setTimeout(()=>{
+         QuestionActuelIndex++;
+        if (QuestionActuelIndex < Questions.length) {
+            afficherQuestions(QuestionActuelIndex);
+        } else {
+            QuestionContainer.innerHTML = `<h2>Quiz terminé 🎉</h2>
+            <p>Score final : ${score} / ${Questions.length}</p>`;
+        }
+       },2000)
+    });
 }
+
+// Fonction qui compare deux tableaux (ordre non important)
+function compareAnswers(userAnswers, correctAnswers) {
+    if (userAnswers.length !== correctAnswers.length) return false;
+    return userAnswers.every(ans => correctAnswers.includes(ans));
+}
+
 afficherQuestions(QuestionActuelIndex);
