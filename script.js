@@ -119,28 +119,30 @@ function afficherQuestions(index) {
         if (compareAnswers(userAnswers, q.correctAnswers)) {
             console.log(checkboxes);
 
-checkboxes.forEach(cb => {
-    cb.nextElementSibling.style.backgroundColor = 'green';
-});
+            checkboxes.forEach(cb => {
+                cb.nextElementSibling.style.backgroundColor = 'green';
+            });
 
             score++;
 
         } else {
             // alert("❌ Mauvaise réponse !");
-            checkboxes.forEach(cb => cb.style.backgroundColor = 'red'); // désélectionner les cases cochées
+            checkboxes.forEach(cb => {
+                cb.nextElementSibling.style.backgroundColor = 'red';
+            });
 
         }
 
         // Passer à la prochaine question
-       setTimeout(()=>{
-         QuestionActuelIndex++;
-        if (QuestionActuelIndex < Questions.length) {
-            afficherQuestions(QuestionActuelIndex);
-        } else {
-            QuestionContainer.innerHTML = `<h2>Quiz terminé 🎉</h2>
+        setTimeout(() => {
+            QuestionActuelIndex++;
+            if (QuestionActuelIndex < Questions.length) {
+                afficherQuestions(QuestionActuelIndex);
+            } else {
+                QuestionContainer.innerHTML = `<h2>Quiz terminé 🎉</h2>
             <p>Score final : ${score} / ${Questions.length}</p>`;
-        }
-       },2000)
+            }
+        }, 2000)
     });
 }
 
