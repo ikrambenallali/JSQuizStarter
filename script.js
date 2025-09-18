@@ -126,7 +126,6 @@ function afficherQuestions(index) {
             score++;
 
         } else {
-            // alert("❌ Mauvaise réponse !");
             checkboxes.forEach(cb => {
                 cb.nextElementSibling.style.backgroundColor = 'red';
             });
@@ -146,7 +145,7 @@ function afficherQuestions(index) {
     });
 }
 
-// Fonction qui compare deux tableaux (ordre non important)
+
 function compareAnswers(userAnswers, correctAnswers) {
     if (userAnswers.length !== correctAnswers.length) return false;
     return userAnswers.every(ans => correctAnswers.includes(ans));
