@@ -1,47 +1,46 @@
-# JSQuizStarter
-# **Brief – Sprint 1 : Quiz statique (Front-end)**
 
-### Contexte du projet
 
-Avec la montée en puissance des outils numériques dans l’éducation, votre entreprise souhaite concevoir une application simple de quiz interactif permettant aux apprenants de tester leurs connaissances de manière ludique.
+### Projet
 
-C’est dans ce cadre qu’est née **JSQuizStarter**, une première version du quiz réalisée uniquement côté Front-end (HTML, CSS, JavaScript).
-
-L’objectif est de créer un quiz statique complet, ergonomique et agréable à utiliser, tout en posant les bases de la logique applicative.
+**JSQuizStarter** — Quiz statique (Front‑end) réalisé en HTML, CSS et JavaScript natif.
+Ce dépôt contient la version **Sprint 1** : un quiz interactif côté client permettant aux apprenants de tester leurs connaissances sur des thématiques choisies.
 
 ---
 
-### ✍ Contraintes et Exigences Fonctionnelles :
+## Description
 
-👋 Le quiz doit contenir **au minimum 10 questions** avec 2 à 4 réponses possibles.
-
-👋 L’utilisateur doit pouvoir sélectionner une seule réponse par question (boutons radio).
-
-👋 À la fin du quiz, un bouton **"Valider"** affiche le score obtenu.
-
-👋 Le score doit s’accompagner d’un message de feedback (par exemple : *“Excellent !”*, *“Peut mieux faire”*).
-
-👋 Afficher également le **temps mis pour répondre** (chronomètre démarré au lancement du quiz).
-
-👋 Bonus attendu :
-
-- Indiquer visuellement si la réponse choisie est correcte ou non (par couleur).
-- Ajouter un bouton **"Recommencer"** pour relancer le quiz sans recharger la page.
+Application de quiz simple et réactive. L'utilisateur choisit une thématique (≥ 10 questions), saisit un pseudo, répond aux questions (1 à plusieurs réponses possibles), dispose d'un chronomètre par question, et obtient un score détaillé à la fin. Les résultats sont persistés dans le `localStorage`.
 
 ---
 
-### 🚨 Contraintes et Exigences Techniques :
+## Fonctionnalités (exigées)
 
-◼ Le projet doit être développé uniquement avec **HTML, CSS et JavaScript natif**.
+* Choix d'une thématique parmi 3 disponibles.
+* Saisie d'un pseudo/username avant démarrage.
+* Chaque thématique contient au minimum **10 questions**.
+* Questions avec 2 à 4 options de réponse (certaines questions peuvent avoir **plusieurs réponses correctes**).
+* Sélection des réponses (checkboxes pour multi‑réponse / radio pour mono‑réponse selon la question).
+* Chronomètre par question : si le temps est écoulé, la question est comptée comme incorrecte et on passe à la suivante.
+* Bouton **Valider** à la fin du quiz : affiche le score et les corrections détaillées.
+* Persist des résultats dans `localStorage` (Pseudo, DateTime, Score, Thématique, Réponses).
 
-◼ Le code doit être **structuré** : séparation claire entre `index.html`, `style.css`, `script.js`.
+---
 
-◼ Utilisation obligatoire des concepts de base JS :
+## Bonus (optionnel)
 
-- Variables, conditions, boucles.
-- Manipulation du DOM.
-- Gestion d’événements (`click`, `change`).
-    
-    ◼ Le design doit être simple mais lisible, avec une mise en page responsive (desktop/mobile).
-    
-    ◼ Le projet doit être versionné sur **GitHub** avec un README clair (présentation, installation, utilisation).
+* Déploiement via **GitHub Pages**.
+* Export des rapports en **PDF**.
+* Dashboard avec statistiques et classement (leaderboard).
+
+---
+
+## Contraintes techniques
+
+* Technologies : **HTML**, **CSS**, **JavaScript** (vanilla) uniquement.
+* Séparation claire des fichiers : `index.html`, `style.css`, `script.js`.
+* Utilisation des concepts JS de base : variables, conditions, boucles, DOM, gestion d'événements.
+* Design responsive (mobile / desktop).
+* Versionnement sur **GitHub**.
+
+---
+
