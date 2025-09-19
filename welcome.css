@@ -1,0 +1,179 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(210, 189, 228);
+            overflow-x: hidden;
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .welcome-container {
+            /* background-color: red; */
+            max-width: 800px;
+            width: 90%;
+            /* height: 50vh; */
+            margin: 5vh auto;
+            padding: 40px;
+            background-color: white;
+            /* min-height: 20vh; */
+            /* overflow: hidden; */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            border: 2px solid rgba(103, 77, 127, 0.1);
+            /* animation: fadeInUp 0.8s ease-out; */
+        }
+
+    
+
+        .welcome-title {
+            color: rgb(103, 77, 127);
+            font-size: medium;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .welcome-subtitle {
+            color: rgb(103, 77, 127);
+            font-size: medium;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .platform-description {
+            color: #666;
+            font-size: medium;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .language-selection {
+            margin: 10px 0;
+        }
+
+        .language-title {
+            color: rgb(103, 77, 127);
+            font-size: medium;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .language-card {
+            padding: 25px 20px;
+            background: linear-gradient(135deg, #FBF4FA 0%, #E192D4 100%);
+            border: 3px solid #C447AF;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .language-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(196, 71, 175, 0.3);
+            background: linear-gradient(135deg, #E192D4 0%, #C447AF 100%);
+            color: white;
+        }
+
+        .language-card.selected {
+            background: rgb(103, 77, 127);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .language-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .language-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .language-description {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .start-quiz-button {
+            padding: 15px 40px;
+            margin-top: 30px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgb(165, 141, 186) 0%, rgb(103, 77, 127) 100%);
+            border: none;
+            color: white;
+            font-size: medium;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(103, 77, 127, 0.3);
+        }
+
+        .start-quiz-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(103, 77, 127, 0.4);
+            background: linear-gradient(135deg, rgb(103, 77, 127) 0%, rgb(165, 141, 186) 100%);
+        }
+
+        .start-quiz-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+      
+
+        .selected-language-display {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(196, 71, 175, 0.1);
+            border-radius: 10px;
+            border: 2px solid #C447AF;
+            display: none;
+        }
+
+
+        .selected-language-display.show {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+     
+
+        @media (max-width: 768px) {
+            .welcome-container {
+                padding: 30px 20px;
+                margin: 2vh auto;
+            }
+            
+            .welcome-title {
+                font-size: 2em;
+            }
+            
+            .languages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+
+        
