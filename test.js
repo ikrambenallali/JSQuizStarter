@@ -245,7 +245,7 @@ function afficherQuestions(index) {
   const q = filteredQuestions[index];
   // console.log(q.data);
 
-  let questionsHtml =
+  // let questionsHtml =
     QuestionContainer.innerHTML = `
     <div>
       <div class="QuestionEtTime">
@@ -275,46 +275,58 @@ function afficherQuestions(index) {
     </div>
   `;
 
-  console.log(QuestionContainer);
 
+  
+  
+  console.log(QuestionContainer);
+  
   const NextButton = document.getElementById('NextButton');
   console.log(NextButton);
-
+  
   const repanceCocher = document.getElementById('repanceCocher');
-  NextButton.addEventListener('click', () => {
-    // atharzzar min cochir 
-    const checkboxes = document.querySelectorAll('input[name="repence"]:checked');
-    const userAnswers = Array.from(checkboxes).map(cb => cb.value);
-    console.log(userAnswers);
+NextButton.addEventListener('click', () => {
+  // Récupérer toutes les réponses cochées pour cette question
+  const checkboxes = document.querySelectorAll('input[name="repence"]:checked');
+  const userAnswers = Array.from(checkboxes).map(cb => cb.value);
 
-    // anarza ini nichan ini la 
-    if (compareAnswers(userAnswers, q.correctAnswers)) {
-      console.log(checkboxes);
+  // Récupérer les réponses déjà sauvegardées (si elles existent)
+  let allAnswers = JSON.parse(localStorage.getItem("UserAnswers")) || [];
 
-      checkboxes.forEach(cb => {
-        cb.nextElementSibling.style.backgroundColor = 'green';
-      });
-
-      score++;
-
-    } else {
-      checkboxes.forEach(cb => {
-        cb.nextElementSibling.style.backgroundColor = 'red';
-      });
-
-    }
-
-    // Passer à la prochaine question
-    setTimeout(() => {
-      QuestionActuelIndex++;
-      if (QuestionActuelIndex < filteredQuestions.length) {
-        afficherQuestions(QuestionActuelIndex);
-      } else {
-        QuestionContainer.innerHTML = `<h2>Quiz terminé </h2>
-            <p>Score final : ${score} / ${filteredQuestions.length}</p>`;
-      }
-    }, 2000)
+  // Ajouter la réponse de la question actuelle
+  allAnswers.push({
+    question: q.question,
+    answers: userAnswers
   });
+
+  // Sauvegarder le tableau complet dans localStorage
+  localStorage.setItem("UserAnswers", JSON.stringify(allAnswers));
+
+  console.log(allAnswers);
+
+  // Vérification des réponses
+  if (compareAnswers(userAnswers, q.correctAnswers)) {
+    checkboxes.forEach(cb => {
+      cb.nextElementSibling.style.backgroundColor = 'green';
+    });
+    score++;
+  } else {
+    checkboxes.forEach(cb => {
+      cb.nextElementSibling.style.backgroundColor = 'red';
+    });
+  }
+
+  // Passer à la question suivante
+  setTimeout(() => {
+    QuestionActuelIndex++;
+    if (QuestionActuelIndex < filteredQuestions.length) {
+      afficherQuestions(QuestionActuelIndex);
+    } else {
+      QuestionContainer.innerHTML = `<h2>Quiz terminé</h2>
+          <p>Score final : ${score} / ${filteredQuestions.length}</p>`;
+    }
+  }, 2000);
+});
+
 }
 
 
@@ -332,16 +344,20 @@ afficherQuestions(QuestionActuelIndex);
   const saveBtn = document.getElementById("saveBtn");
 
   saveBtn.addEventListener("click", () => {
-    const username = input.value; // récupérer la valeur
-    localStorage.setItem("username", username); // stocker dans localStorage
-    alert("Username saved: " + username);
+    const username = input.value; 
+    localStorage.setItem("username", username);
+    // alert("Username saved: " + username);
   });
 
   // Pour charger automatiquement si un username est déjà sauvegardé :
-  window.addEventListener("load", () => {
-    const savedName = localStorage.getItem("username");
-    if (savedName) {
-      input.value = savedName; // remplir l’input avec le nom sauvegardé
-    }
-  });
+  // window.addEventListener("load", () => {
+  //   const savedName = localStorage.getItem("username");
+  //   if (savedName) {
+  //     input.value = savedName; // remplir l’input avec le nom sauvegardé
+  //   }
+  // });
+
+
+
+
 
