@@ -245,8 +245,8 @@ function afficherQuestions(index) {
   const q = filteredQuestions[index];
   // console.log(q.data);
 
-  let questionsHtml =
-    QuestionContainer.innerHTML = `
+  // let questionsHtml =
+  QuestionContainer.innerHTML = `
     <div>
       <div class="QuestionEtTime">
         <h2 class="titleQuestionTotal">Question <span>${index + 1}</span></h2>
@@ -275,6 +275,9 @@ function afficherQuestions(index) {
     </div>
   `;
 
+
+
+
   console.log(QuestionContainer);
 
   const NextButton = document.getElementById('NextButton');
@@ -282,39 +285,50 @@ function afficherQuestions(index) {
 
   const repanceCocher = document.getElementById('repanceCocher');
   NextButton.addEventListener('click', () => {
-    // atharzzar min cochir 
+    // Récupérer toutes les réponses cochées pour cette question
     const checkboxes = document.querySelectorAll('input[name="repence"]:checked');
     const userAnswers = Array.from(checkboxes).map(cb => cb.value);
-    console.log(userAnswers);
 
-    // anarza ini nichan ini la 
+    // Récupérer les réponses déjà sauvegardées (si elles existent)
+    let allAnswers = JSON.parse(localStorage.getItem("UserAnswers")) || [];
+
+    // Ajouter la réponse de la question actuelle
+    allAnswers.push({
+      question: q.question,
+      answers: userAnswers
+    });
+
+    // Sauvegarder le tableau complet dans localStorage
+    localStorage.setItem("UserAnswers", JSON.stringify(allAnswers));
+
+    console.log(allAnswers);
+
+    // Vérification des réponses
     if (compareAnswers(userAnswers, q.correctAnswers)) {
-      console.log(checkboxes);
-
       checkboxes.forEach(cb => {
         cb.nextElementSibling.style.backgroundColor = 'green';
       });
-
       score++;
-
+      localStorage.setItem("score", score);
     } else {
       checkboxes.forEach(cb => {
         cb.nextElementSibling.style.backgroundColor = 'red';
       });
-
     }
 
-    // Passer à la prochaine question
+    // Passer à la question suivante
     setTimeout(() => {
       QuestionActuelIndex++;
       if (QuestionActuelIndex < filteredQuestions.length) {
         afficherQuestions(QuestionActuelIndex);
       } else {
-        QuestionContainer.innerHTML = `<h2>Quiz terminé </h2>
-            <p>Score final : ${score} / ${filteredQuestions.length}</p>`;
+        QuestionContainer.innerHTML = `<h2>Quiz terminé</h2>
+          <p>Score final : ${score} / ${filteredQuestions.length}</p>`;
+        Score();
       }
-    }, 2000)
+    }, 2000);
   });
+
 }
 
 
@@ -328,20 +342,64 @@ function compareAnswers(userAnswers, correctAnswers) {
 
 afficherQuestions(QuestionActuelIndex);
 
-  const input = document.getElementById("name");
-  const saveBtn = document.getElementById("saveBtn");
+const input = document.getElementById("name");
+const saveBtn = document.getElementById("saveBtn");
 
-  saveBtn.addEventListener("click", () => {
-    const username = input.value; // récupérer la valeur
-    localStorage.setItem("username", username); // stocker dans localStorage
-    alert("Username saved: " + username);
-  });
+saveBtn.addEventListener("click", () => {
+  const username = input.value;
+  localStorage.setItem("username", username);
+  // alert("Username saved: " + username);
+});
 
-  // Pour charger automatiquement si un username est déjà sauvegardé :
-  window.addEventListener("load", () => {
-    const savedName = localStorage.getItem("username");
-    if (savedName) {
-      input.value = savedName; // remplir l’input avec le nom sauvegardé
-    }
-  });
+
+
+
+function Score() {
+  const username = input.value;
+  const excludeCategory = localStorage.getItem("excludeCategory");
+  const filteredQuestions = Questions.filter(cat => cat.category === excludeCategory).flatMap(cat => cat.data);
+  const checkboxes = document.querySelectorAll('input[name="repence"]:checked');
+  const userAnswers = Array.from(checkboxes).map(cb => cb.value);
+  console.log(userAnswers);
+
+
+
+  // console.log(filteredQuestions);
+
+  console.log("score:", score);
+  QuestionContainer.innerHTML = `
+    <div>
+      <div class="QuestionEtTime">
+        <h2 class="titleQuestionTotal">Your Score</h2>
+        
+        </div>
+        <h2 class="username">${username}</h2>
+        <h2 class="theme">theme: ${excludeCategory}</h2>
+
+      <p class="questionX">You scored ${score} out of ${filteredQuestions.length}</p>
+
+      <table>
+        <tr>
+          <th>Question</th>
+          <th>Your Answer</th>
+          <th>Correct Answer</th>
+        </tr>
+        ${filteredQuestions.map((q, index) => {
+          const userAnswer = userAnswers[index] || [];
+          const savedAnswers = JSON.parse(localStorage.getItem("UserAnswers")) || [];
+          console.log(userAnswer);
+          return `
+            <tr>
+              <td>${q.question}</td>
+              <td>${savedAnswers.find(ans => ans.question === q.question)?.answers.join(", ") || ""}</td>
+              <td>${q.correctAnswers.join(", ")}</td>
+            </tr>
+          `;
+        }).join("")}
+      </table>
+    </div>
+  `;
+}
+
+
 
