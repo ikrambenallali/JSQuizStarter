@@ -2,40 +2,49 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
 </head>
 
 <body>
 
-    <div class="container" id="container">
-        <h1>Welcome to Quiz App</h1>
-        <p>This is a simple starter template for your  quiz application.</p>
-        <a id="start-quiz-button" class="start-quiz-button" href="#">Start Quiz</a>
+  <div class="container" id="container">
+    <h1>Welcome to Quiz App</h1>
+    <p>This is a simple starter template for your quiz application.</p>
+    <div class="nameContainer">
 
+      <label for="name" class="nameLabel">
+        Username:
+        <input type="text" placeholder="Enter your name" id="name">
+      </label>
+  
+      <button id="saveBtn" class="saveBtn">Save</button>
     </div>
+    <a id="start-quiz-button" class="start-quiz-button" href="#">Start Quiz</a>
+
+  </div>
 
 
 
-    <div class="QuestionContainer hidden" id="QuestionContainer">
-        <!-- thanita an afficha isa9sithan nar  -->
+  <div class="QuestionContainer hidden" id="QuestionContainer">
+    <!-- thanita an afficha isa9sithan nar  -->
 
-    </div>
-    <script src="script.js"></script>
-    <script>
-        const quiz = document.getElementById("QuestionContainer");
-        const start = document.getElementById("start-quiz-button");
-        const container = document.getElementById("container");
- 
+  </div>
+  <script src="test.js"></script>
+  <script>
+    const quiz = document.getElementById("QuestionContainer");
+    const start = document.getElementById("start-quiz-button");
+    const container = document.getElementById("container");
 
-        start.addEventListener("click", () => {
-            quiz.style.display = "block";
-            container.style.display = "none";
-        });
 
-    </script>
+    start.addEventListener("click", () => {
+      quiz.style.display = "block";
+      container.style.display = "none";
+    });
+
+  </script>
 </body>
 
 </html>
