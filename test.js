@@ -219,30 +219,33 @@ const Questions = [
     ]
   }
 ];
-// Récupérer la catégorie à exclure
-// const excludeCategory = localStorage.getItem("excludeCategory");
-// console.log(excludeCategory);
+// console.log(Questions[1].data);
 
-// // Filtrer les questions
-// const filteredQuestions = Questions
-//     .filter(cat => cat.category !== excludeCategory)
-//     .flatMap(cat => cat.data); // pour avoir un seul tableau avec toutes les questions
-
-// console.log(filteredQuestions); // toutes les questions sauf celle de la catégorie cliquée
-
-// console.log(Questions);
-// let variable=Questions.filter(cat=>cat.category==="JavaScript");
-// console.log(variable);
-// console.log(Questions[0].data[0].question);
 
 let QuestionActuelIndex = 0;
 let score = 0;
-
 const QuestionContainer = document.getElementById('QuestionContainer');
 
 function afficherQuestions(index) {
-    const q = Questions[index];
+  console.log("Affichage de la question à l'index :");
 
+  const excludeCategory = localStorage.getItem("excludeCategory");
+  console.log(excludeCategory);
+  const filteredQuestions = Questions.filter(cat => cat.category === excludeCategory).flatMap(cat => cat.data);
+  console.log(filteredQuestions);
+
+
+  // nraza ma sf nkamar nomro nisa9sithan ighanar 
+  if (index >= filteredQuestions.length) {
+    QuestionContainer.innerHTML = `<h2>Quiz finished </h2>
+            <p>Score final : ${score} / ${filteredQuestions.length}</p>`;
+    return;
+  }
+
+  const q = filteredQuestions[index];
+  // console.log(q.data);
+
+  let questionsHtml =
     QuestionContainer.innerHTML = `
     <div>
       <div class="QuestionEtTime">
@@ -251,69 +254,94 @@ function afficherQuestions(index) {
       </div>
       <p class="questionX">${q.question}</p>
       
-      <div class="answers">
+      <div class="answers"> 
+      
         ${q.answers
-            .map(
-                (answer, i) =>
-                    `<label>
+      .map(
+        (answer, i) =>
+          `<label>
        <input type="checkbox" name="repence" class="repanceCocher" id="repanceCocher" value="${answer}">
        <span>${answer}</span>
      </label>`
-            )
+      )
 
-            .join('')}
+      .join('')}
       </div>
 
       <div class="NextButtonEtnbrQustion">
-        <h2>Question ${index + 1} of ${Questions.length}</h2>
+        <h2>Question ${index + 1} of ${filteredQuestions.length}</h2>
         <button id="NextButton" class="NextButton">Next</button>
       </div>
     </div>
   `;
 
-    const NextButton = document.getElementById('NextButton');
+  console.log(QuestionContainer);
 
-    const repanceCocher = document.getElementById('repanceCocher');
-    NextButton.addEventListener('click', () => {
-        // atharzzar min cochir 
-        const checkboxes = document.querySelectorAll('input[name="repence"]:checked');
-        const userAnswers = Array.from(checkboxes).map(cb => cb.value);
-        console.log(userAnswers);
+  const NextButton = document.getElementById('NextButton');
+  console.log(NextButton);
 
-        // anarza ini nichan ini la 
-        if (compareAnswers(userAnswers, q.correctAnswers)) {
-            console.log(checkboxes);
+  const repanceCocher = document.getElementById('repanceCocher');
+  NextButton.addEventListener('click', () => {
+    // atharzzar min cochir 
+    const checkboxes = document.querySelectorAll('input[name="repence"]:checked');
+    const userAnswers = Array.from(checkboxes).map(cb => cb.value);
+    console.log(userAnswers);
 
-            checkboxes.forEach(cb => {
-                cb.nextElementSibling.style.backgroundColor = 'green';
-            });
+    // anarza ini nichan ini la 
+    if (compareAnswers(userAnswers, q.correctAnswers)) {
+      console.log(checkboxes);
 
-            score++;
+      checkboxes.forEach(cb => {
+        cb.nextElementSibling.style.backgroundColor = 'green';
+      });
 
-        } else {
-            checkboxes.forEach(cb => {
-                cb.nextElementSibling.style.backgroundColor = 'red';
-            });
+      score++;
 
-        }
+    } else {
+      checkboxes.forEach(cb => {
+        cb.nextElementSibling.style.backgroundColor = 'red';
+      });
 
-        // Passer à la prochaine question
-        setTimeout(() => {
-            QuestionActuelIndex++;
-            if (QuestionActuelIndex < Questions.length) {
-                afficherQuestions(QuestionActuelIndex);
-            } else {
-                QuestionContainer.innerHTML = `<h2>Quiz terminé 🎉</h2>
-            <p>Score final : ${score} / ${Questions.length}</p>`;
-            }
-        }, 2000)
-    });
+    }
+
+    // Passer à la prochaine question
+    setTimeout(() => {
+      QuestionActuelIndex++;
+      if (QuestionActuelIndex < filteredQuestions.length) {
+        afficherQuestions(QuestionActuelIndex);
+      } else {
+        QuestionContainer.innerHTML = `<h2>Quiz terminé </h2>
+            <p>Score final : ${score} / ${filteredQuestions.length}</p>`;
+      }
+    }, 2000)
+  });
 }
 
 
 function compareAnswers(userAnswers, correctAnswers) {
-    if (userAnswers.length !== correctAnswers.length) return false;
-    return userAnswers.every(ans => correctAnswers.includes(ans));
+
+  // console.log(userAnswers);
+  if (userAnswers.length !== correctAnswers.length) return false;
+  return userAnswers.every(ans => correctAnswers.includes(ans));
+
 }
 
 afficherQuestions(QuestionActuelIndex);
+
+  const input = document.getElementById("name");
+  const saveBtn = document.getElementById("saveBtn");
+
+  saveBtn.addEventListener("click", () => {
+    const username = input.value; // récupérer la valeur
+    localStorage.setItem("username", username); // stocker dans localStorage
+    alert("Username saved: " + username);
+  });
+
+  // Pour charger automatiquement si un username est déjà sauvegardé :
+  window.addEventListener("load", () => {
+    const savedName = localStorage.getItem("username");
+    if (savedName) {
+      input.value = savedName; // remplir l’input avec le nom sauvegardé
+    }
+  });
+

@@ -18,7 +18,7 @@ function goToQuiz(excludeCategory) {
     localStorage.setItem("excludeCategory", excludeCategory);
         console.log("Stocké dans localStorage :", localStorage.getItem("excludeCategory"));
 
-    // window.location.href = "test.html";
+    window.location.href = "test.html";
 }
 
 js.addEventListener("click", () => goToQuiz("JavaScript"));
