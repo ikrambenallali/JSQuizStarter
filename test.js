@@ -309,6 +309,7 @@ NextButton.addEventListener('click', () => {
       cb.nextElementSibling.style.backgroundColor = 'green';
     });
     score++;
+    localStorage.setItem("score", score); 
   } else {
     checkboxes.forEach(cb => {
       cb.nextElementSibling.style.backgroundColor = 'red';
