@@ -275,7 +275,7 @@ function afficherQuestions(index) {
     </div>
   `;
 
-
+  timer(index);
 
 
   console.log(QuestionContainer);
@@ -400,6 +400,65 @@ function Score() {
     </div>
   `;
 }
+const startQuizButton = document.getElementById('start-quiz-button');
+startQuizButton.addEventListener('click', () => {
+  afficherQuestions(QuestionActuelIndex);
+  timer(QuestionActuelIndex);
+});
 
 
 
+function timer(index) {
+  let timeLeft = 20;
+  const excludeCategory = localStorage.getItem("excludeCategory");
+  const filteredQuestions = Questions
+    .filter(cat => cat.category === excludeCategory)
+    .flatMap(cat => cat.data);
+
+  const q = filteredQuestions[index]; 
+  const timeDisplay = document.getElementById('time');
+  
+  // Arrêter tout timer précédent s'il existe
+  if (window.currentTimer) {
+    clearInterval(window.currentTimer);
+  }
+
+  window.currentTimer = setInterval(() => {
+    timeLeft--;
+    timeDisplay.textContent = `${timeLeft}s`;
+
+    if (timeLeft <= 0) {
+      clearInterval(window.currentTimer);
+
+      const checkboxes = document.querySelectorAll('input[name="repence"]:checked');
+      if (checkboxes.length === 0) {
+        // Montrer les bonnes réponses
+        q.correctAnswers.forEach(correct => {
+          const answers = document.querySelectorAll('.answers span');
+          answers.forEach(span => {
+            if (span.textContent === correct) {
+              span.style.backgroundColor = 'green';
+            }
+          });
+        });
+
+        // Sauvegarder une réponse vide
+        let allAnswers = JSON.parse(localStorage.getItem("UserAnswers")) || [];
+        allAnswers.push({
+          question: q.question,
+          answers: [] // Réponse vide car temps écoulé
+        });
+        localStorage.setItem("UserAnswers", JSON.stringify(allAnswers));
+
+        setTimeout(() => {
+          QuestionActuelIndex++;
+          if (QuestionActuelIndex < filteredQuestions.length) {
+            afficherQuestions(QuestionActuelIndex);
+          } else {
+            Score();
+          }
+        }, 2000);
+      }
+    }
+  }, 1000);
+}
