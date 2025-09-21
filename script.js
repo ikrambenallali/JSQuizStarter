@@ -292,6 +292,13 @@ function afficherQuestions(index) {
     // Récupérer les réponses déjà sauvegardées (si elles existent)
     let allAnswers = JSON.parse(localStorage.getItem("UserAnswers")) || [];
 
+
+
+     if (checkboxes.length === 0) {
+    alert("⚠️ Vous devez répondre avant de passer à la question suivante !");
+    return;
+}
+
     // Ajouter la réponse de la question actuelle
     allAnswers.push({
       question: q.question,
