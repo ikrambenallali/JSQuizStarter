@@ -1,0 +1,74 @@
+{
+  "category": "JavaScript",
+  "data": [
+    {
+      "id": 1,
+      "question": "What is the data type returned by typeof null?",
+      "answers": ["null", "object", "undefined", "boolean"],
+      "correctAnswers": ["object"]
+    },
+    {
+      "id": 2,
+      "question": "Which declarations create a variable that cannot be changed?",
+      "answers": ["var x = 5;", "let x = 5;", "const x = 5;", "static x = 5;"],
+      "correctAnswers": ["const x = 5;"]
+    },
+    {
+      "id": 3,
+      "question": "Which of these will output \"22\"?",
+      "answers": [
+        "console.log(2 + \"2\")",
+        "console.log(\"2\" + 2)",
+        "console.log(2 + 2)",
+        "console.log(\"2\" + \"2\")"
+      ],
+      "correctAnswers": [
+        "console.log(2 + \"2\")",
+        "console.log(\"2\" + 2)",
+        "console.log(\"2\" + \"2\")"
+      ]
+    },
+    {
+      "id": 4,
+      "question": "Which methods can convert the string \"123\" into a number?",
+      "answers": ["parseInt(\"123\")", "Number(\"123\")", "string(\"123\")", "toInt(\"123\")"],
+      "correctAnswers": ["parseInt(\"123\")", "Number(\"123\")"]
+    },
+    {
+      "id": 5,
+      "question": "What is the value of Boolean(0)?",
+      "answers": ["true", "false", "\"0\"", "null"],
+      "correctAnswers": ["false"]
+    },
+    {
+      "id": 6,
+      "question": "Which methods can add elements to an array?",
+      "answers": ["push()", "pop()", "shift()", "unshift()"],
+      "correctAnswers": ["push()", "unshift()"]
+    },
+    {
+      "id": 7,
+      "question": "What is the scope of a variable declared with let?",
+      "answers": ["Global", "Function", "Block", "File"],
+      "correctAnswers": ["Block"]
+    },
+    {
+      "id": 8,
+      "question": "What is the result of: console.log([1, 2, 3].length);",
+      "answers": ["2", "3", "undefined", "Error"],
+      "correctAnswers": ["3"]
+    },
+    {
+      "id": 9,
+      "question": "Which functions execute code repeatedly or after a delay?",
+      "answers": ["setInterval()", "setTimeout()", "delay()", "sleep()"],
+      "correctAnswers": ["setInterval()", "setTimeout()"]
+    },
+    {
+      "id": 10,
+      "question": "What does this expression return? console.log(typeof NaN);",
+      "answers": ["NaN", "undefined", "number", "object"],
+      "correctAnswers": ["number"]
+    }
+  ]
+}

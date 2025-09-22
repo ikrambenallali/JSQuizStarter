@@ -1,0 +1,75 @@
+{
+  "category": "HTML",
+  "data": [
+    {
+      "id": 1,
+      "question": "Which HTML element is used to define the title of a document?",
+      "answers": ["<meta>", "<title>", "<head>", "<header>"],
+      "correctAnswers": ["<title>"]
+    },
+    {
+      "id": 2,
+      "question": "Which HTML elements are self-closing?",
+      "answers": ["<img>", "<br>", "<input>", "<div>"],
+      "correctAnswers": ["<img>", "<br>", "<input>"]
+    },
+    {
+      "id": 3,
+      "question": "What is the correct HTML element for the largest heading?",
+      "answers": ["<heading>", "<h1>", "<h6>", "<header>"],
+      "correctAnswers": ["<h1>"]
+    },
+    {
+      "id": 4,
+      "question": "Which attributes are required for an img element?",
+      "answers": ["src", "alt", "width", "height"],
+      "correctAnswers": ["src", "alt"]
+    },
+    {
+      "id": 5,
+      "question": "What does HTML stand for?",
+      "answers": [
+        "Hyper Text Markup Language",
+        "High Tech Modern Language",
+        "Home Tool Markup Language",
+        "Hyperlink Text Management Language"
+      ],
+      "correctAnswers": ["Hyper Text Markup Language"]
+    },
+    {
+      "id": 6,
+      "question": "Which HTML elements are used for creating lists?",
+      "answers": ["<ul>", "<ol>", "<li>", "<list>"],
+      "correctAnswers": ["<ul>", "<ol>", "<li>"]
+    },
+    {
+      "id": 7,
+      "question": "What is the correct HTML element for inserting a line break?",
+      "answers": ["<break>", "<br>", "<lb>", "<newline>"],
+      "correctAnswers": ["<br>"]
+    },
+    {
+      "id": 8,
+      "question": "Which HTML element defines navigation links?",
+      "answers": ["<navigation>", "<nav>", "<navigate>", "<menu>"],
+      "correctAnswers": ["<nav>"]
+    },
+    {
+      "id": 9,
+      "question": "Which input types are valid in HTML5?",
+      "answers": ["email", "date", "color", "phone"],
+      "correctAnswers": ["email", "date", "color"]
+    },
+    {
+      "id": 10,
+      "question": "What is the purpose of the alt attribute in img elements?",
+      "answers": [
+        "Alternative text for accessibility",
+        "Alternate source for the image",
+        "Image alignment",
+        "Image animation"
+      ],
+      "correctAnswers": ["Alternative text for accessibility"]
+    }
+  ]
+}

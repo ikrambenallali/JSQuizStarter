@@ -1,0 +1,70 @@
+{
+  "category": "CSS",
+  "data": [
+    {
+      "id": 1,
+      "question": "Which CSS property is used to change the text color?",
+      "answers": ["color", "text-color", "font-color", "background-color"],
+      "correctAnswers": ["color"]
+    },
+    {
+      "id": 2,
+      "question": "Which CSS selectors target elements by class?",
+      "answers": [".classname", "#idname", "tagname", "[attribute]"],
+      "correctAnswers": [".classname"]
+    },
+    {
+      "id": 3,
+      "question": "What does CSS stand for?",
+      "answers": [
+        "Cascading Style Sheets",
+        "Computer Style Sheets",
+        "Creative Style Sheets",
+        "Colorful Style Sheets"
+      ],
+      "correctAnswers": ["Cascading Style Sheets"]
+    },
+    {
+      "id": 4,
+      "question": "Which CSS properties control spacing?",
+      "answers": ["margin", "padding", "border", "spacing"],
+      "correctAnswers": ["margin", "padding"]
+    },
+    {
+      "id": 5,
+      "question": "What is the default value of the position property?",
+      "answers": ["static", "relative", "absolute", "fixed"],
+      "correctAnswers": ["static"]
+    },
+    {
+      "id": 6,
+      "question": "Which CSS properties are used for flexbox?",
+      "answers": ["display: flex", "justify-content", "align-items", "flex-direction"],
+      "correctAnswers": ["display: flex", "justify-content", "align-items", "flex-direction"]
+    },
+    {
+      "id": 7,
+      "question": "How do you select an element with id=\"demo\"?",
+      "answers": ["#demo", ".demo", "demo", "id.demo"],
+      "correctAnswers": ["#demo"]
+    },
+    {
+      "id": 8,
+      "question": "Which CSS property controls the text size?",
+      "answers": ["font-size", "text-size", "font-style", "text-style"],
+      "correctAnswers": ["font-size"]
+    },
+    {
+      "id": 9,
+      "question": "Which values are valid for the display property?",
+      "answers": ["block", "inline", "flex", "visible"],
+      "correctAnswers": ["block", "inline", "flex"]
+    },
+    {
+      "id": 10,
+      "question": "What is the correct syntax for a CSS comment?",
+      "answers": ["/* comment */", "// comment", "<!-- comment -->", "# comment"],
+      "correctAnswers": ["/* comment */"]
+    }
+  ]
+}
