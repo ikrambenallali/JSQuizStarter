@@ -247,11 +247,11 @@ function afficherQuestions(index) {
         ${q.answers
             .map(
                 (answer, i) =>
-    `<label>
+                    `<label>
        <input type="checkbox" name="repence" class="repanceCocher" id="repanceCocher" value="${answer}">
        <span>${answer}</span>
      </label>`
-             )
+            )
             .join('')}
       </div>
 
