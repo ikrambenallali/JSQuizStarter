@@ -1,9 +1,10 @@
+import { Score } from "./score.js";
 let questions = [];
 let score = 0;
 let QuestionActuelIndex = 0;
 
 // Récupération des questions depuis le fichier JSON
-async function fetchQuestions() {
+ async function fetchQuestions() {
     const excludeCategory = localStorage.getItem("excludeCategory");
     let url = '';
     if (excludeCategory === "JavaScript") {
@@ -17,7 +18,7 @@ async function fetchQuestions() {
     try {
         const response = await fetch(url);
         const data = await response.json();
-        questions = data.data; 
+        questions = data.data;
         console.log("Questions récupérées :", questions);
         afficherQuestions(QuestionActuelIndex);
 
@@ -30,7 +31,7 @@ async function fetchQuestions() {
 function afficherQuestions(index) {
     const QuestionContainer = document.getElementById('QuestionContainer');
     if (index >= questions.length) {
-        console.log("hi",questions);
+        console.log("hi", questions);
         QuestionContainer.innerHTML = `<h2>Quiz terminé</h2>
             <p>Score final : ${score} / ${questions.length}</p>`;
         return;
@@ -85,6 +86,7 @@ function afficherQuestions(index) {
         setTimeout(() => {
             QuestionActuelIndex++;
             afficherQuestions(QuestionActuelIndex);
+           Score(questions, score);
         }, 2000);
     });
 }
