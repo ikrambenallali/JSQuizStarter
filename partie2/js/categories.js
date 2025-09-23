@@ -9,4 +9,12 @@ categories.forEach(category => {
         <p>Test your knowledge in ${category}!</p>
     `;
     languagesGrid.appendChild(card);
+    card.addEventListener("click", () => {
+        localStorage.setItem("excludeCategory", category);
+        console.log("Stocké dans localStorage :", localStorage.getItem("excludeCategory"));
+        window.location.href = "../Html/quiz.html";
+    });
 });
+
+
+
