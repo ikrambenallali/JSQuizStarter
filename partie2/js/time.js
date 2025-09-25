@@ -1,6 +1,6 @@
 // time.js
 import { Score } from "./score.js";
-import { getItem } from "./storage.js";
+import { setItem , getItem } from "./storage.js";
 
 
 
@@ -60,13 +60,36 @@ export function timer(questions, index, score, onNext) {
 }
 
 
-export function timeGlobal(){
-    let totalTime = 0;
-    const timeGlobalDisplay = document.getElementById("timeGlobal");
-    window.timeGlobalTimer = setInterval(() => {    
-        totalTime++;
-        if (timeGlobalDisplay) timeGlobalDisplay.textContent = `Total Time: ${totalTime}s`;
-    }, 1000);
+let totalTime = 0;
+let globalTimer = null;
 
+export function startGlobalTimer() {
+    const timeGlobalDisplay = document.getElementById("timeGlobal");
+    totalTime = 0;
+
+    // Si un timer existait déjà, on le reset
+    if (globalTimer) {
+        clearInterval(globalTimer);
+    }
+
+    globalTimer = setInterval(() => {
+        totalTime++;
+        if (timeGlobalDisplay) {
+            // Format minutes:secondes
+            const minutes = Math.floor(totalTime / 60);
+            const seconds = totalTime % 60;
+            timeGlobalDisplay.textContent = `Total Time: ${minutes}m ${seconds}s`;
+        }
+    }, 1000);
 }
+
+export function stopGlobalTimer() {
+    if (globalTimer) {
+        clearInterval(globalTimer);
+        globalTimer = null;
+    }
+    return totalTime; // utile si tu veux récupérer le temps final
+}
+
+
 

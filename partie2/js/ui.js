@@ -28,8 +28,15 @@ export function renderQuestion(questions, index, score, onNext) {
   timeDiv.id = "time";
   timeDiv.textContent = "20";
 
+  
+  
+
+
+
   header.appendChild(title);
   header.appendChild(timeDiv);
+
+
 
   // Texte de la question
   const questionText = document.createElement("p");

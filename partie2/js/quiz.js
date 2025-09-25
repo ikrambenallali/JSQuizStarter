@@ -3,6 +3,8 @@ import { Score } from "./score.js";
 import { getItem, setItem } from "./storage.js";
 // import { timer } from "./time.js";
 import { renderQuestion } from "./ui.js";
+import { startGlobalTimer, stopGlobalTimer } from "./time.js";
+
 
 let questions = [];
 let score = 0;
@@ -46,7 +48,7 @@ export function startQuiz(data) {
   questions = data;
   score = 0;
   currentIndex = 0;
-
+  startGlobalTimer();
   renderQuestion(questions, currentIndex, score, handleNext);
 }
 
