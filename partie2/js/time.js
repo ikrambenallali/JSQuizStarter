@@ -1,18 +1,20 @@
 // time.js
 import { Score } from "./score.js";
 
+
 export function timer(questions, index, score, onNext) {
     let timeLeft = 20;
     const q = questions[index];
-    const timeDisplay = document.getElementById('time');
+    const timeDisplay = document.getElementById("time");
 
+    // si un timer existait déjà, on l'arrête
     if (window.currentTimer) {
         clearInterval(window.currentTimer);
     }
 
     window.currentTimer = setInterval(() => {
         timeLeft--;
-        timeDisplay.textContent = `${timeLeft}s`;
+        if (timeDisplay) timeDisplay.textContent = `${timeLeft}s`;
 
         if (timeLeft <= 0) {
             clearInterval(window.currentTimer);
@@ -38,13 +40,14 @@ export function timer(questions, index, score, onNext) {
                 });
                 localStorage.setItem("UserAnswers", JSON.stringify(allAnswers));
 
-                // passer à la suite via callback
+                // passer à la question suivante
                 setTimeout(() => {
                     const nextIndex = index + 1;
                     if (nextIndex < questions.length) {
-                        onNext(nextIndex); // ✅ on délègue la suite
+                        onNext(nextIndex, score);
                     } else {
-                        Score(questions, score);
+                        const container = document.getElementById("QuestionContainer");
+                        Score(questions, score, container);
                     }
                 }, 2000);
             }

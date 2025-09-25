@@ -1,4 +1,4 @@
-// import { timer } from "./timer.js";
+import { timer } from "./time.js";
 import { compareAnswers } from "./quiz.js";
 import { Score } from "./score.js";
 
@@ -106,4 +106,6 @@ export function renderQuestion(questions, index, score, onNext) {
       onNext(index + 1, score);
     }, 2000);
   });
+  timer(questions, index, score, onNext);
+
 }
