@@ -1,9 +1,10 @@
-import { setUsername, getUsername } from "./storage.js";
+// import { setUsername, getUsername } from "./storage.js";
+import { setItem, getItem } from "./storage.js";
 
 const input = document.getElementById("name");
 const saveBtn = document.getElementById("saveBtn");
 saveBtn.addEventListener("click", () => {
     const username = input.value;
-    setUsername(username);
-    console.log("Nom d'utilisateur stocké :", getUsername());
+    setItem("username", username);
+    console.log("Nom d'utilisateur stocké :", getItem("username"));
 });

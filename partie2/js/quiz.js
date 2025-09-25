@@ -1,5 +1,6 @@
 import { Score } from "./score.js";
-import { getCategory, getUserAnswers, setScore, setUserAnswers } from "./storage.js";
+// import { getCategory, getUserAnswers, setScore, setUserAnswers } from "./storage.js";
+import { getItem, setItem } from "./storage.js";
 // import { timer } from "./time.js";
 import { renderQuestion } from "./ui.js";
 
@@ -9,7 +10,7 @@ let currentIndex = 0;
 
 // Récupération des questions depuis le fichier JSON
  async function fetchQuestions() {
-    const excludeCategory = getCategory();
+    const excludeCategory = getItem("excludeCategory");
     let url = '';
     if (excludeCategory === "JavaScript") {
         url = '../data/javascript.json';
@@ -62,7 +63,7 @@ export function saveUserAnswer(question, userAnswers) {
 }
 
 export function saveScore(score) {
-    setScore(score);
+    setItem("score", score);
 //   localStorage.setItem("score", score);
 }
 fetchQuestions();

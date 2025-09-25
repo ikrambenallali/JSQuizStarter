@@ -1,6 +1,6 @@
 // let score = 0;
 
-import { getCategory, getUserAnswers, getUsername } from "./storage.js";
+import {  getItem} from "./storage.js";
 
 // export function Score(questions, score) {
 //     const username = input.value;
@@ -41,9 +41,9 @@ import { getCategory, getUserAnswers, getUsername } from "./storage.js";
 // }
 // score.js
 export function Score(questions, score, QuestionContainer) {
-    const username =getUsername() || "Anonymous";
-    const excludeCategory = getCategory();
-    const savedAnswers = getUserAnswers();
+    const username = getItem("username") || "Anonymous";
+    const excludeCategory = getItem("excludeCategory");
+    const savedAnswers = getItem("UserAnswers") || [];
 
   QuestionContainer.innerHTML = "";
 

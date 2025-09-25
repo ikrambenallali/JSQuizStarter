@@ -1,5 +1,7 @@
 // time.js
 import { Score } from "./score.js";
+import { getItem } from "./storage.js";
+
 
 
 export function timer(questions, index, score, onNext) {
@@ -33,12 +35,14 @@ export function timer(questions, index, score, onNext) {
                 });
 
                 // enregistrer que l'utilisateur n'a rien répondu
-                let allAnswers = JSON.parse(localStorage.getItem("UserAnswers")) || [];
+                // let allAnswers = JSON.parse(localStorage.getItem("UserAnswers")) || [];
+                let allAnswers = getItem("UserAnswers") || [];
                 allAnswers.push({
                     question: q.question,
                     answers: []
                 });
-                localStorage.setItem("UserAnswers", JSON.stringify(allAnswers));
+                // localStorage.setItem("UserAnswers", JSON.stringify(allAnswers));
+                setItem("UserAnswers", allAnswers);
 
                 // passer à la question suivante
                 setTimeout(() => {
@@ -54,3 +58,15 @@ export function timer(questions, index, score, onNext) {
         }
     }, 1000);
 }
+
+
+export function timeGlobal(){
+    let totalTime = 0;
+    const timeGlobalDisplay = document.getElementById("timeGlobal");
+    window.timeGlobalTimer = setInterval(() => {    
+        totalTime++;
+        if (timeGlobalDisplay) timeGlobalDisplay.textContent = `Total Time: ${totalTime}s`;
+    }, 1000);
+
+}
+
