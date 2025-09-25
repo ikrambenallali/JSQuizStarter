@@ -1,3 +1,5 @@
+import { getCategory, setCategory } from "./storage.js";
+
 const categories = ["JavaScript", "HTML", "CSS"];
 const languagesGrid = document.getElementById("languagesGrid");
 categories.forEach(category => {
@@ -10,11 +12,12 @@ categories.forEach(category => {
     `;
     languagesGrid.appendChild(card);
     card.addEventListener("click", () => {
-        localStorage.setItem("excludeCategory", category);
-        console.log("Stocké dans localStorage :", localStorage.getItem("excludeCategory"));
+        setCategory(category);
+        // localStorage.setItem("excludeCategory", category);
+        // console.log("Stocké dans localStorage :", localStorage.getItem("excludeCategory"));
+        console.log("Catégorie stockée :", getCategory());
         window.location.href = "../Html/quiz.html";
     });
 });
-
 
 

@@ -1,5 +1,7 @@
 // let score = 0;
 
+import { getCategory, getUserAnswers, getUsername } from "./storage.js";
+
 // export function Score(questions, score) {
 //     const username = input.value;
 //     const excludeCategory = localStorage.getItem("excludeCategory");
@@ -39,9 +41,9 @@
 // }
 // score.js
 export function Score(questions, score, QuestionContainer) {
-  const username = localStorage.getItem("username") || "Anonymous";
-  const excludeCategory = localStorage.getItem("excludeCategory");
-  const savedAnswers = JSON.parse(localStorage.getItem("UserAnswers")) || [];
+    const username =getUsername() || "Anonymous";
+    const excludeCategory = getCategory();
+    const savedAnswers = getUserAnswers();
 
   QuestionContainer.innerHTML = "";
 
