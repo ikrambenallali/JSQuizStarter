@@ -1,0 +1,164 @@
+body {
+  background-color: rgb(210, 189, 228);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.history-container {
+  max-width: 1000px;
+  margin: 10vh auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.history-title {
+  font-size: 2em;
+  font-weight: bold;
+  color: rgb(103, 77, 127);
+  margin-bottom: 20px;
+}
+
+/* Tableau de l’historique */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+table th {
+  background-color: rgb(103, 77, 127);
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+table td {
+  padding: 12px;
+  border-bottom: 1px solid rgb(210, 189, 228);
+  text-align: center;
+  font-size: 0.95em;
+}
+
+table tr:nth-child(even) {
+  background-color: rgb(250, 248, 252);
+}
+
+table tr:hover {
+  background-color: rgb(240, 230, 248);
+}
+
+/* Statistiques */
+.stats-container {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.stats-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: rgb(103, 77, 127);
+  margin-bottom: 15px;
+}
+
+.stat-item {
+  background: #FBF4FA;
+  border-left: 5px solid rgb(165, 141, 186);
+  margin: 10px 0;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 1em;
+  color: rgb(70, 50, 90);
+  box-shadow: 0 2px 5px rgba(196, 71, 175, 0.2);
+}
+
+/* Classement */
+.ranking-container {
+  margin-top: 30px;
+}
+
+.ranking-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: rgb(103, 77, 127);
+  margin-bottom: 15px;
+}
+
+.ranking-list {
+  list-style: none;
+  padding: 0;
+}
+
+.ranking-list li {
+  background: rgb(210, 189, 228);
+  margin: 8px 0;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: white;
+  box-shadow: 0 2px 6px rgba(103, 77, 127, 0.3);
+}
+
+.ranking-list li:nth-child(1) {
+  background: gold;
+  color: black;
+}
+
+.ranking-list li:nth-child(2) {
+  background: silver;
+  color: black;
+}
+
+.ranking-list li:nth-child(3) {
+  background: #cd7f32; /* bronze */
+  color: black;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .history-container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  table {
+    font-size: 0.85em;
+  }
+
+  .stat-item {
+    font-size: 0.9em;
+  }
+}
+.stats {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.stats h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: rgb(103, 77, 127);
+  margin-bottom: 15px;
+}
+
+.stats ul li, 
+.stats p {
+  background: #FBF4FA;
+  border-left: 5px solid rgb(165, 141, 186);
+  margin: 10px 0;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 1em;
+  color: rgb(70, 50, 90);
+  box-shadow: 0 2px 5px rgba(196, 71, 175, 0.2);
+  list-style: none;
+}
