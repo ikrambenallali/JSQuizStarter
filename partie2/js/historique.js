@@ -66,8 +66,7 @@ function renderHistory() {
     return acc;
   }, {});
   // Sauvegarde pour chart.js
-localStorage.setItem("byTheme", JSON.stringify(byTheme));
-
+  localStorage.setItem("byTheme", JSON.stringify(byTheme));
 
   // Score moyen par thématique
   const avgByTheme = results.reduce((acc, r) => {
@@ -134,5 +133,11 @@ localStorage.setItem("byTheme", JSON.stringify(byTheme));
   container.appendChild(statsDiv);
 }
 
-// Lancer au chargement
-renderHistory();
+// Attendre que le DOM soit chargé avant d'exécuter
+document.addEventListener('DOMContentLoaded', function() {
+  renderHistory();
+  // Vérifier que la fonction existe avant de l'appeler
+  if (typeof createExportButtons === 'function') {
+    createExportButtons();
+  }
+});

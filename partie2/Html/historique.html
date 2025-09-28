@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <title>Historique Quiz</title>
   <link rel="stylesheet" href="../css/historique.css"> <!-- ton CSS existant -->
 </head>
+
 <header>
-    <nav class="navbar">
-        <div class="nav-left">
-            <a href="index.html" class="nav-logo">JSQuizStarter</a>
-        </div>
-        <div class="nav-right">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="historique.html" class="nav-link">History</a>
-            <a href="quiz.html" class="nav-link">Quiz</a>
-            <a href="chart.html" class="nav-link">Statistics</a>
-        </div>
-    </nav>
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="nav-logo">JSQuizStarter</a>
+    </div>
+    <div class="nav-right">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="quiz.html" class="nav-link">Quiz</a>
+      <a href="historique.html" class="nav-link">History</a>
+      <a href="chart.html" class="nav-link">Statistics</a>
+    </div>
+  </nav>
 </header>
+
 <body>
+  <!-- Container d'export en dehors de historyContainer -->
+  <div id="exportContainer"></div>
+  
   <div class="results-container" id="historyContainer">
     <!-- Le contenu sera généré en JS -->
   </div>
+  
   <script type="module" src="../js/historique.js"></script>
+  <script src="../js/export.js"></script>
 </body>
+
 </html>

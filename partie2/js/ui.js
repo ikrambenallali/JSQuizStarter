@@ -116,3 +116,6 @@ export function renderQuestion(questions, index, score, onNext) {
   timer(questions, index, score, onNext);
 
 }
+
+
+
