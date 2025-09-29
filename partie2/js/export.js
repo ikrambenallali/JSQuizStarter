@@ -8,13 +8,17 @@ function exportJSON(key = "results", filename = "export.json") {
   
   const jsonStr = JSON.stringify(data, null, 2);
 
+  // (Blob  c’est comme une boîte qui contient des données (texte, JSON, image, vidéo, etc))
   const blob = new Blob([jsonStr], { type: "application/json" });
+
+  // Génère une URL temporaire (de type blob:) pointant sur le Blob en mémoire. Cette URL permet au navigateur de télécharger le contenu.
   const url = URL.createObjectURL(blob);
 
   const a = document.createElement("a");
   a.href = url;
   a.download = filename;
   a.click();
+  // Je n’ai plus besoin de cette URL blob, tu peux libérer la mémoire
   URL.revokeObjectURL(url);
 }
 
@@ -25,8 +29,10 @@ function exportCSV(key = "results", filename = "export.csv") {
     return;
   }
 
-  const headers = Object.keys(data[0]).join(",");
-  const rows = data.map(obj => Object.values(obj).join(","));
+const headers = Object.keys(data[0]).slice(0,-2).join(",");
+  // console.log(headers);
+  const rows = data.map(obj => Object.values(obj).slice(0,-2).join(","));
+  // console.log(rows);
   const csvStr = [headers, ...rows].join("\n");
 
   const blob = new Blob([csvStr], { type: "text/csv" });
@@ -40,46 +46,24 @@ function exportCSV(key = "results", filename = "export.csv") {
 }
 
 // Fonction spéciale pour exporter les stats par thème en CSV
-function exportThemeStatsCSV() {
-  const data = JSON.parse(localStorage.getItem("byTheme")) || {};
-  if (Object.keys(data).length === 0) {
-    alert("Aucune statistique à exporter !");
-    return;
-  }
 
-  const csvStr = "Thematique,Nombre_de_parties\n" + 
-    Object.entries(data).map(([theme, count]) => `${theme},${count}`).join("\n");
-
-  const blob = new Blob([csvStr], { type: "text/csv" });
-  const url = URL.createObjectURL(blob);
-
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "themes_stats.csv";
-  a.click();
-  URL.revokeObjectURL(url);
-}
 
 // === Création dynamique des boutons ===
 function createExportButtons() {
   const container = document.getElementById("exportContainer");
   
-  // Vérifier que l'élément existe
   if (!container) {
     console.error("Element 'exportContainer' non trouvé");
     return;
   }
 
-  // Nettoyer le container au cas où
   container.innerHTML = '';
 
-  // Créer un titre pour la section export
   const exportTitle = document.createElement("h3");
-  exportTitle.textContent = "Options d'export";
+  exportTitle.textContent = "Options of export";
   exportTitle.style.marginTop = "20px";
   container.appendChild(exportTitle);
 
-  // Container pour les boutons
   const buttonsDiv = document.createElement("div");
   buttonsDiv.style.display = "flex";
   buttonsDiv.style.gap = "10px";
@@ -88,25 +72,23 @@ function createExportButtons() {
 
   // Bouton Export JSON
   const btnJSON = document.createElement("button");
-  btnJSON.textContent = "Exporter résultats (JSON)";
+  btnJSON.textContent = "Export JSON";
   btnJSON.className = "export-btn";
   btnJSON.onclick = () => exportJSON("results", "quiz_results.json");
 
   // Bouton Export CSV
   const btnCSV = document.createElement("button");
-  btnCSV.textContent = "Exporter résultats (CSV)";
+  btnCSV.textContent = "Export CSV";
   btnCSV.className = "export-btn";
   btnCSV.onclick = () => exportCSV("results", "quiz_results.csv");
 
  
-  // Ajouter les boutons dans le container
   buttonsDiv.appendChild(btnJSON);
   buttonsDiv.appendChild(btnCSV);
  
 
   container.appendChild(buttonsDiv);
 
-  // Ajouter quelques styles CSS basiques
   const style = document.createElement("style");
   style.textContent = `
     .export-btn {
@@ -119,7 +101,6 @@ function createExportButtons() {
       cursor: pointer;
       font-size: 14px;
     }
- 
   `;
   document.head.appendChild(style);
 }

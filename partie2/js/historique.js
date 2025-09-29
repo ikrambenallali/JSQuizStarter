@@ -1,27 +1,26 @@
-import { getItem } from "./storage.js";
+import { getItem, setItem } from "./storage.js";
 
 function renderHistory() {
   const container = document.getElementById("historyContainer");
-  container.innerHTML = ""; // nettoyage
+  container.innerHTML = ""; 
 
   const results = getItem("results") || [];
 
   const title = document.createElement("h2");
   title.className = "titleQuestionTotal";
-  title.textContent = "Historique des parties";
+  title.textContent = "History";
   container.appendChild(title);
        
 
   if (results.length === 0) {
     const emptyMsg = document.createElement("p");
-    emptyMsg.textContent = "Aucun résultat enregistré pour l'instant.";
+    emptyMsg.textContent = "No game played yet.";
     container.appendChild(emptyMsg);
     return;
   }
 
   // Tableau des résultats
   const table = document.createElement("table");
-
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
   ["Pseudo", "Thématique", "Score", "Date"].forEach(text => {
@@ -58,15 +57,15 @@ function renderHistory() {
   table.appendChild(tbody);
   container.appendChild(table);
 
-  // --- Statistiques ---
+  //======================================================= Statistiques====================================================
 
   // Nb parties par thématique
   const byTheme = results.reduce((acc, r) => {
     acc[r.category] = (acc[r.category] || 0) + 1;
     return acc;
   }, {});
-  // Sauvegarde pour chart.js
   localStorage.setItem("byTheme", JSON.stringify(byTheme));
+
 
   // Score moyen par thématique
   const avgByTheme = results.reduce((acc, r) => {
@@ -91,7 +90,7 @@ function renderHistory() {
   statsDiv.className = "stats";
 
   const h3 = document.createElement("h3");
-  h3.textContent = "Statistiques globales";
+  h3.textContent = "Statistics";
   statsDiv.appendChild(h3);
 
   // Nb parties par thème
@@ -105,6 +104,7 @@ function renderHistory() {
 
   // Moyenne par thème
   const ulAvg = document.createElement("ul");
+  // Transforme un objet en tableau de paires [clé, valeur]
   Object.entries(avgByTheme).forEach(([cat, avg]) => {
     const li = document.createElement("li");
     li.textContent = `Score moyen ${cat} : ${avg}`;
@@ -114,12 +114,12 @@ function renderHistory() {
 
   // Meilleur score global
   const bestP = document.createElement("p");
-  bestP.textContent = `Meilleur score : ${best.username} (${best.score})`;
+  bestP.textContent = `best score : ${best.username} (${best.score})`;
   statsDiv.appendChild(bestP);
 
   // Top 3
   const top3Title = document.createElement("h4");
-  top3Title.textContent = "Top 3 joueurs";
+  top3Title.textContent = "Top 3 players";
   statsDiv.appendChild(top3Title);
 
   const olTop = document.createElement("ol");

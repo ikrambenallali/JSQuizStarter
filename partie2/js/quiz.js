@@ -1,7 +1,5 @@
 import { Score } from "./score.js";
-// import { getCategory, getUserAnswers, setScore, setUserAnswers } from "./storage.js";
 import { getItem, setItem } from "./storage.js";
-// import { timer } from "./time.js";
 import { renderQuestion } from "./ui.js";
 import { startGlobalTimer, stopGlobalTimer } from "./time.js";
 
@@ -41,9 +39,6 @@ export function compareAnswers(userAnswers, correctAnswers) {
     return userAnswers.every(ans => correctAnswers.includes(ans));
 }
 
-
-
-
 export function startQuiz(data) {
   questions = data;
   score = 0;
@@ -57,15 +52,15 @@ function handleNext(nextIndex, newScore) {
   score = newScore;
   renderQuestion(questions, currentIndex, score, handleNext);
 }
+
 export function saveUserAnswer(question, userAnswers) {
-  let allAnswers = getUserAnswers();
+  let allAnswers = getItem("UserAnswers") || [];
 
   allAnswers.push({ question, answers: userAnswers });
-  setUserAnswers(allAnswers);
+  setItem("UserAnswers", allAnswers);
 }
 
 export function saveScore(score) {
     setItem("score", score);
-//   localStorage.setItem("score", score);
 }
 fetchQuestions();

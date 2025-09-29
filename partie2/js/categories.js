@@ -1,4 +1,3 @@
-// import { getCategory, setCategory } from "./storage.js";
 import { setItem, getItem } from "./storage.js";
 
 const categories = ["JavaScript", "HTML", "CSS"];
@@ -14,8 +13,6 @@ categories.forEach(category => {
     languagesGrid.appendChild(card);
     card.addEventListener("click", () => {
         setItem("excludeCategory", category);
-        // localStorage.setItem("excludeCategory", category);
-        // console.log("Stocké dans localStorage :", localStorage.getItem("excludeCategory"));
         console.log("Catégorie stockée :", getItem("excludeCategory"));
         window.location.href = "../Html/quiz.html";
     });

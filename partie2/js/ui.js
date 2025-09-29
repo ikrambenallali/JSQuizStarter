@@ -119,3 +119,6 @@ export function renderQuestion(questions, index, score, onNext) {
 
 
 
+
+
+
